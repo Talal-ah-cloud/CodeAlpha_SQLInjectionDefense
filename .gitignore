@@ -1,0 +1,8 @@
+# AWS credentials / local AWS config — never commit these.
+.aws/
+*.pem
+.env
+__pycache__/
+*.pyc
+# SQLite database — created locally on first run, holds demo user data.
+*.db
