@@ -102,21 +102,25 @@ chahiye ho. Kuch bhi pehle se launch nahi hai.
    use karo.
 2. Security group: sirf 2 rules — **SSH (22)** apni IP se,
    **Custom TCP 5000** apni IP se. Baaki sab band.
-3. SSH karo, phir:
+3. SSH karo, phir (Ubuntu 24.04 par `pip3 install` seedha nahi
+   chalta — is liye venv use karo):
 ```bash
-sudo apt update && sudo apt install -y python3-pip git
+sudo apt update && sudo apt install -y python3-venv git
 git clone https://github.com/Talal-ah-cloud/CodeAlpha_SQLInjectionDefense.git
 cd CodeAlpha_SQLInjectionDefense
-pip3 install -r requirements.txt
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
 ```
 4. Asli encryption key set karo (demo key cloud par kabhi nahi):
 ```bash
 python3 -c "import os; print(os.urandom(32).hex())"
 export CODEALPHA_AES_KEY=<upar wali key>
 ```
-5. App chalao:
+5. App chalao (venv ka python use karo, taake activation par
+   depend na kare):
 ```bash
-CODEALPHA_HOST=0.0.0.0 nohup python3 app.py &
+CODEALPHA_HOST=0.0.0.0 nohup venv/bin/python app.py &
 ```
 6. Browser mein kholo: `http://<instance-ka-public-IP>:5000`
    — wohi demo, ab internet par.
